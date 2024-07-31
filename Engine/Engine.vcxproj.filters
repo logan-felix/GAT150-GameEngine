@@ -77,9 +77,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Engine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Core\EAssert.h">
       <Filter>Source\Core</Filter>
     </ClInclude>
@@ -136,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="Source\Renderer\Color.h">
       <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
