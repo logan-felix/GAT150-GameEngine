@@ -6,21 +6,23 @@
 
 int main(int argc, char* argv[])
 {
-	g_engine.Initialize();
+	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
+	engine->Initialize();
 
-	while (!g_engine.IsQuit())
+	File::SetFilePath("Assets");
+	std::cout << File::GetFilePath() << std::endl;
+
+	while (!engine->IsQuit())
 	{
-		g_engine.Update();
+		engine->Update();
 
-		g_engine.GetRenderer().SetColor(0, 0, 0, 0);
-		g_engine.GetRenderer().BeginFrame();
+		engine->GetRenderer().SetColor(0, 0, 0, 0);
+		engine->GetRenderer().BeginFrame();
 
-		g_engine.GetPS().Draw(g_engine.GetRenderer());
-
-		g_engine.GetRenderer().EndFrame();
+		engine->GetRenderer().EndFrame();
 	}
 
-	g_engine.Shutdown();
+	engine->Shutdown();
 
 	return 0;
 }
