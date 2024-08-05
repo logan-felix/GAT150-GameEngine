@@ -42,3 +42,13 @@ Vector2 Texture::GetSize()
 
     return Vector2(size.x, size.y);
 }
+
+bool Texture::Create(std::string name, ...)
+{
+    va_list args;
+    va_start(args, name);
+    Renderer renderer = va_arg(args, Renderer);
+    va_end(args);
+
+    return Load(name, renderer);
+}

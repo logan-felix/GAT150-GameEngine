@@ -13,8 +13,7 @@ int main(int argc, char* argv[])
 	std::cout << File::GetFilePath() << std::endl;
 
 	// create texture, using shared_ptr so texture can be shared
-	std::shared_ptr<Texture> texture = std::make_shared<Texture>();
-	texture->Load("Zelda-Image.png", engine->GetRenderer());
+	res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("Zelda-Image.png", engine->GetRenderer());
 
 	while (!engine->IsQuit())
 	{
@@ -23,7 +22,7 @@ int main(int argc, char* argv[])
 		engine->GetRenderer().SetColor(0, 0, 0, 0);
 		engine->GetRenderer().BeginFrame();
 
-		engine->GetRenderer().DrawTexture(texture.get(), 30, 30);
+		engine->GetRenderer().DrawTexture(texture.get(), 200, 150);
 
 		engine->GetRenderer().EndFrame();
 	}

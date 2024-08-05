@@ -31,6 +31,9 @@
 #include "Framework/Scene.h"
 #include "Framework/Game.h"
 
+// ** resources **
+#include "Resources/Resource.h"
+#include "Resources/ResourceManager.h"
 
 #include <fmod.hpp>
 #include <SDL.h>
