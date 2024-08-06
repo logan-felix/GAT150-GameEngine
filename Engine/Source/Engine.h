@@ -35,6 +35,9 @@
 #include "Resources/Resource.h"
 #include "Resources/ResourceManager.h"
 
+// ** components **
+#include "Components/TextureComponent.h"
+
 #include <fmod.hpp>
 #include <SDL.h>
 

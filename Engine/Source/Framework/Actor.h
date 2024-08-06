@@ -1,23 +1,26 @@
 #pragma once
-#include "../Math/Transform.h"
-#include "../Renderer/Model.h"
+#include "Object.h"
+#include "Math/Transform.h"
+#include "Components/Component.h"
+
 #include <string>
+#include <memory>
+#include <vector>
 
 class Renderer;
 class Scene;
 
-class Actor
+class Actor : public Object
 {
 public:
 	Actor() = default;
 	Actor(const Transform& transform) : m_transform{ transform } {}
-	Actor(const Transform& transform, Model* model) : 
-		m_transform{ transform },
-		m_model{ model }
-	{}
 
+	void Initialize() override;
 	virtual void Update(float dt);
 	virtual void Draw(Renderer& renderer);
+
+	void AddComponent(std::unique_ptr<Component> component);
 
 	void SetDamping(float damping) { m_damping = damping; }
 	void SetLifespan(float lifespan) { m_lifespan = lifespan;  }
@@ -27,10 +30,8 @@ public:
 	void SetTag(const std::string& tag) { m_tag = tag; }
 	const std::string& GetTag() { return m_tag; }
 
-	virtual void OnCollision(Actor* actor) = 0;
-	float GetRadius() { return (m_model) ? m_model->GetRadius() * m_transform.scale : 0; };
-
-	Model GetModel() { return *m_model; }
+	virtual void OnCollision(Actor* actor) {}
+	float GetRadius() { return 0; };
 
 	friend class Scene;
 
@@ -43,6 +44,7 @@ protected:
 	Vector2 m_velocity{ 0, 0 };
 	float m_damping{ 0 };
 
-	Model* m_model{ nullptr };
 	Scene* m_scene{ nullptr };
+
+	std::vector<std::unique_ptr<Component>> m_components;
 };
