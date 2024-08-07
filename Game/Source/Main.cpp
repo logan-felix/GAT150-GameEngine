@@ -11,6 +11,24 @@ int main(int argc, char* argv[])
 
 	File::SetFilePath("Assets");
 	std::cout << File::GetFilePath() << std::endl;
+
+	std::string s;
+	File::ReadFile("text.txt", s);
+	std::cout << s;
+
+	rapidjson::Document document;
+	Json::Load("text.txt", document);
+
+	std::string name;
+	int age;
+	bool isAwake;
+
+	READ_DATA(document, age);
+	READ_DATA(document, name);
+	READ_DATA(document, isAwake);
+
+	std::cout << name << " " << age << " " << isAwake << std::endl;
+
 	{
 		// create texture, using shared_ptr so texture can be shared
 		res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("Zelda-Image.png", engine->GetRenderer());
@@ -35,11 +53,11 @@ int main(int argc, char* argv[])
 			engine->GetRenderer().BeginFrame();
 
 			// draw texture
-			engine->GetRenderer().DrawTexture(texture.get(), 200, 150);
+			//engine->GetRenderer().DrawTexture(texture.get(), 200, 150);
 			
 			// draw text
 			text->Draw(engine->GetRenderer(), 50, 50);
-			//actor->Draw(engine->GetRenderer());
+			actor->Draw(engine->GetRenderer());
 
 			engine->GetRenderer().EndFrame();
 		}
