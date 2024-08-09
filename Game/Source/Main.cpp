@@ -6,6 +6,9 @@
 
 int main(int argc, char* argv[])
 {
+	Factory::Instance().Register<Actor>(Actor::GetTypeName());
+	Factory::Instance().Register<TextureComponent>("TextureComponent");
+
 	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
 	engine->Initialize();
 
@@ -19,15 +22,21 @@ int main(int argc, char* argv[])
 	rapidjson::Document document;
 	Json::Load("text.txt", document);
 
-	std::string name;
 	int age;
+	std::string name;
 	bool isAwake;
+	Vector2 position;
+	Color color;
 
 	READ_DATA(document, age);
 	READ_DATA(document, name);
 	READ_DATA(document, isAwake);
+	READ_DATA(document, position);
+	READ_DATA(document, color);
 
-	std::cout << name << " " << age << " " << isAwake << std::endl;
+	std::cout << "\n" << name << " " << age << " " << isAwake << std::endl;
+	std::cout << position.x << " " << position.y << std::endl;
+	std::cout << color.r << " " << color.g << " " << color.b << " " << color.a << std::endl;
 
 	{
 		// create texture, using shared_ptr so texture can be shared
@@ -35,11 +44,12 @@ int main(int argc, char* argv[])
 
 		res_t<Font> font = ResourceManager::Instance().Get<Font>("ArcadeClassic.ttf", 50);
 		std::unique_ptr<Text> text = std::make_unique<Text>(font);
-		text->Create(engine->GetRenderer(), "WOWIE!", { 1, 1, 0, 1 });
+		text->Create(engine->GetRenderer(), "WOWIE!", { 0.537, 0.812, 0.941, 1 });
 
-		Transform t{ { 30, 30 } };
-		std::unique_ptr<Actor> actor = std::make_unique<Actor>(t);
-		std::unique_ptr<TextureComponent> component = std::make_unique<TextureComponent>();
+		Transform t{ { 200, 150 } };
+		auto actor = Factory::Instance().Create<Actor>(Actor::GetTypeName());
+		actor->SetTransform(t);
+		auto component = Factory::Instance().Create<TextureComponent>(TextureComponent::GetTypeName());
 		component->texture = texture;
 		actor->AddComponent(std::move(component));
 
@@ -52,10 +62,8 @@ int main(int argc, char* argv[])
 			engine->GetRenderer().SetColor(0, 0, 0, 0);
 			engine->GetRenderer().BeginFrame();
 
-			// draw texture
 			//engine->GetRenderer().DrawTexture(texture.get(), 200, 150);
 			
-			// draw text
 			text->Draw(engine->GetRenderer(), 50, 50);
 			actor->Draw(engine->GetRenderer());
 

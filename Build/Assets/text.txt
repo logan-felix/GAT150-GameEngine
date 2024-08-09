@@ -1,9 +1,7 @@
 {
-	"name":"Logan",
-	"age":19,
-	"isAwake":true,
-	"position":[
-		5,
-		10
-	]
+	"name": "Logan",
+	"age": 19,
+	"isAwake": true,
+	"position": [60, 90],
+	"color": [0.537, 0.812, 0.941, 1]
 }
