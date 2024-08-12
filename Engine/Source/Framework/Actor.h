@@ -25,23 +25,21 @@ public:
 	void AddComponent(std::unique_ptr<Component> component);
 
 	void SetDamping(float damping) { m_damping = damping; }
-	void SetLifespan(float lifespan) { m_lifespan = lifespan;  }
 
 	const Transform& GetTransform() { return m_transform; }
 	void SetTransform(Transform& transform) { m_transform = transform; }
-
-	void SetTag(const std::string& tag) { m_tag = tag; }
-	const std::string& GetTag() { return m_tag; }
 
 	virtual void OnCollision(Actor* actor) {}
 	float GetRadius() { return 0; };
 
 	friend class Scene;
 
+public:
+	std::string tag;
+	float lifespan = 0;
+
 protected:
-	std::string m_tag;
 	bool m_destroyed = false;
-	float m_lifespan = 0;
 
 	Transform m_transform;
 	Vector2 m_velocity{ 0, 0 };

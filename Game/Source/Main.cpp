@@ -41,10 +41,9 @@ int main(int argc, char* argv[])
 	{
 		// create texture, using shared_ptr so texture can be shared
 		res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("Zelda-Image.png", engine->GetRenderer());
-
 		res_t<Font> font = ResourceManager::Instance().Get<Font>("ArcadeClassic.ttf", 50);
 		std::unique_ptr<Text> text = std::make_unique<Text>(font);
-		text->Create(engine->GetRenderer(), "WOWIE!", { 0.537, 0.812, 0.941, 1 });
+		text->Create(engine->GetRenderer(), "WOWIE!", { 0.537f, 0.812f, 0.941f, 1 });
 
 		Transform t{ { 200, 150 } };
 		auto actor = Factory::Instance().Create<Actor>(Actor::GetTypeName());
