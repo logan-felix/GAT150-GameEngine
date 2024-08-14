@@ -28,6 +28,7 @@ public:
 	int GetHeight() const { return m_height; }
 
 	void DrawTexture(class Texture* texture, float x, float y, float angle = 0.0f);
+	void DrawTexture(class Texture* texture, const struct Transform& transform, bool hflip = false);
 
 private:
 	SDL_Window* m_window{ nullptr };

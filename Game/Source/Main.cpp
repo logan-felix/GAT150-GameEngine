@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "Components/PlayerComponent.h"
 
 #include <iostream>
 #include <cstdlib>
@@ -7,7 +8,10 @@
 int main(int argc, char* argv[])
 {
 	Factory::Instance().Register<Actor>(Actor::GetTypeName());
-	Factory::Instance().Register<TextureComponent>("TextureComponent");
+	Factory::Instance().Register<TextureComponent>(TextureComponent::GetTypeName());
+	Factory::Instance().Register<EnginePhysicsComponent>(EnginePhysicsComponent::GetTypeName());
+	Factory::Instance().Register<PlayerComponent>("PlayerComponent");
+
 
 	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
 	engine->Initialize();
@@ -15,56 +19,39 @@ int main(int argc, char* argv[])
 	File::SetFilePath("Assets");
 	std::cout << File::GetFilePath() << std::endl;
 
-	std::string s;
-	File::ReadFile("text.txt", s);
-	std::cout << s;
+	std::string buffer;
+	File::ReadFile("Scenes/scene.json", buffer);
+	std::cout << buffer << std::endl;
 
 	rapidjson::Document document;
-	Json::Load("text.txt", document);
+	Json::Load("Scenes/scene.json", document);
 
-	int age;
-	std::string name;
-	bool isAwake;
-	Vector2 position;
-	Color color;
-
-	READ_DATA(document, age);
-	READ_DATA(document, name);
-	READ_DATA(document, isAwake);
-	READ_DATA(document, position);
-	READ_DATA(document, color);
-
-	std::cout << "\n" << name << " " << age << " " << isAwake << std::endl;
-	std::cout << position.x << " " << position.y << std::endl;
-	std::cout << color.r << " " << color.g << " " << color.b << " " << color.a << std::endl;
+	std::unique_ptr<Scene> scene = std::make_unique<Scene>(engine.get());
+	scene->Read(document);
+	scene->Initialize();
 
 	{
 		// create texture, using shared_ptr so texture can be shared
-		res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("Zelda-Image.png", engine->GetRenderer());
-		res_t<Font> font = ResourceManager::Instance().Get<Font>("ArcadeClassic.ttf", 50);
-		std::unique_ptr<Text> text = std::make_unique<Text>(font);
-		text->Create(engine->GetRenderer(), "WOWIE!", { 0.537f, 0.812f, 0.941f, 1 });
+		//res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("Zelda-Image.png", engine->GetRenderer());
+		//res_t<Font> font = ResourceManager::Instance().Get<Font>("ArcadeClassic.ttf", 50);
+		//std::unique_ptr<Text> text = std::make_unique<Text>(font);
+		//text->Create(engine->GetRenderer(), "WOWIE!", { 0.537f, 0.812f, 0.941f, 1 });
 
-		Transform t{ { 200, 150 } };
-		auto actor = Factory::Instance().Create<Actor>(Actor::GetTypeName());
-		actor->SetTransform(t);
-		auto component = Factory::Instance().Create<TextureComponent>(TextureComponent::GetTypeName());
-		component->texture = texture;
-		actor->AddComponent(std::move(component));
+		//auto actor = Factory::Instance().Create<Actor>(Actor::GetTypeName());
+		//actor->transform = Transform{ { 200, 150 } };
+		//auto component = Factory::Instance().Create<TextureComponent>(TextureComponent::GetTypeName());
+		//component->texture = texture;
+		//actor->AddComponent(std::move(component));
 
 		while (!engine->IsQuit())
 		{
 			engine->Update();
-
-			actor->Update(engine->GetTime().GetDeltaTime());
+			scene->Update(engine->GetTime().GetDeltaTime());
 
 			engine->GetRenderer().SetColor(0, 0, 0, 0);
 			engine->GetRenderer().BeginFrame();
 
-			//engine->GetRenderer().DrawTexture(texture.get(), 200, 150);
-			
-			text->Draw(engine->GetRenderer(), 50, 50);
-			actor->Draw(engine->GetRenderer());
+			scene->Draw(engine->GetRenderer());
 
 			engine->GetRenderer().EndFrame();
 		}
