@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+#include "Core/EString.h"
 
 #include <list>
 #include <memory>
@@ -26,8 +27,8 @@ public:
 	void AddActor(std::unique_ptr<Actor> actor);
 	void RemoveAll();
 
-	template<typename T>
-	T* GetActor();
+	template<typename T> T* GetActor();
+	template<typename T> T* GetActor(const std::string& name);
 
 	Game* GetGame() { return game; }
 
@@ -46,6 +47,18 @@ T* Scene::GetActor()
 	{
 		T* result = dynamic_cast<T*>(actor.get());
 		if (result != nullptr) return result;
+	}
+
+	return nullptr;
+}
+
+template<typename T>
+inline T* Scene::GetActor(const std::string& name)
+{
+	for (auto& actor : actors)
+	{
+		T* result = dynamic_cast<T*>(actor.get());
+		if (result && IsEqualIgnoreCase(result->name, name)) return result;
 	}
 
 	return nullptr;

@@ -1,6 +1,8 @@
 #include "Scene.h"
 #include "Actor.h"
 #include "Core/Factory.h"
+#include "Components/CollisionComponent.h"
+
 #include <algorithm>
 
 void Scene::Initialize()
@@ -9,6 +11,59 @@ void Scene::Initialize()
 	{
 		actor->Initialize();
 	}
+}
+
+void Scene::Update(float dt)
+{
+	// update
+	for (auto& actor : actors)
+	{
+		if (actor->active) actor->Update(dt);
+	}
+
+	//collision
+	for (auto& actor1 : actors)
+	{
+		CollisionComponent* collision1 = actor1->GetComponent<CollisionComponent>();
+		if (!collision1) continue;
+
+		for (auto& actor2 : actors)
+		{
+			// don't check with self
+			if (actor1 == actor2) continue;
+
+			CollisionComponent* collision2 = actor2->GetComponent<CollisionComponent>();
+			if (!collision2) continue;
+
+			if (collision1->CheckCollision(collision2))
+			{
+				if (actor1->OnCollisionEnter) actor1->OnCollisionEnter(actor2.get());
+				if (actor2->OnCollisionEnter) actor2->OnCollisionEnter(actor1.get());
+			}
+		}
+	}
+
+	//destroy
+	std::erase_if(actors, [](auto& actor) { return actor->destroyed; });
+}
+
+void Scene::Draw(Renderer& renderer)
+{
+	for (auto& actor : actors)
+	{
+		if (actor->active) actor->Draw(renderer);
+	}
+}
+
+void Scene::AddActor(std::unique_ptr<Actor> actor)
+{
+	actor->scene = this;
+	actors.push_back(std::move(actor));
+}
+
+void Scene::RemoveAll()
+{
+	actors.clear();
 }
 
 void Scene::Read(const json_t& value)
@@ -28,34 +83,3 @@ void Scene::Read(const json_t& value)
 void Scene::Write(json_t& value)
 {
 }
-
-void Scene::Update(float dt)
-{
-	// update
-	for (auto& actor : actors)
-	{
-		actor->Update(dt);
-	}
-
-	std::erase_if(actors, [](auto& actor) { return actor->destroyed; });
-}
-
-void Scene::Draw(Renderer& renderer)
-{
-	for (auto& actor : actors)
-	{
-		actor->Draw(renderer);
-	}
-}
-
-void Scene::AddActor(std::unique_ptr<Actor> actor)
-{
-	actor->scene = this;
-	actors.push_back(std::move(actor));
-}
-
-void Scene::RemoveAll()
-{
-	actors.clear();
-}
-

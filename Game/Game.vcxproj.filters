@@ -22,7 +22,7 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Components\PlayerComponent.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

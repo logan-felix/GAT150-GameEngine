@@ -4,6 +4,8 @@
 #include "Resources/ResourceManager.h"
 #include "Engine.h"
 
+FACTORY_REGISTER(TextureComponent)
+
 void TextureComponent::Initialize()
 {
 	if (!textureName.empty())
@@ -19,7 +21,7 @@ void TextureComponent::Update(float dt)
 void TextureComponent::Draw(Renderer& renderer)
 {
 	Transform transform = owner->transform;
-	renderer.DrawTexture(texture.get(), transform, true);
+	renderer.DrawTexture(texture, transform, true);
 }
 
 void TextureComponent::Read(const json_t& value)

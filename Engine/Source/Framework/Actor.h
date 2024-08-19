@@ -6,6 +6,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <functional>
 
 class Renderer;
 class Scene;
@@ -21,6 +22,8 @@ public:
 	void Initialize() override;
 	virtual void Update(float dt);
 	virtual void Draw(Renderer& renderer);
+
+	std::function<void(Actor*)> OnCollisionEnter;
 
 	void AddComponent(std::unique_ptr<Component> component);
 

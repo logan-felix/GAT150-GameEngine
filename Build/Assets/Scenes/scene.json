@@ -1,25 +1,43 @@
 {
 	"actors": [
 		{
-			"name": "player",
+			"name": "background",
 			"transform": {
-				"position": [ 60, 60 ],
+				"position": [ 0, 0 ],
 				"rotation": 0,
-				"scale": 1
+				"scale": 2
 			},
 			"components": [
 				{
 					"type": "TextureComponent",
-					"textureName": "Textures/Zelda-Image.png"
+					"textureName": "Textures/Purple_Nebula.png"
+				}
+			]
+		},
+		{
+			"name": "player",
+			"transform": {
+				"position": [ 60, 60 ],
+				"rotation": 0,
+				"scale": 3
+			},
+			"components": [
+				{
+					"type": "TextureComponent",
+					"textureName": "Textures/PlayerShip.png"
 				},
 				{
 					"type": "EnginePhysicsComponent",
 					"velocity": [ 0, 0 ],
-					"damping": 0.1
+					"damping": 1.0
 				},
 				{
 					"type": "PlayerComponent",
-					"speed": 100
+					"speed": 200
+				},
+				{
+					"type": "CircleCollisionComponent",
+					"radius":  24
 				}
 			]
 		},
@@ -28,17 +46,33 @@
 			"transform": {
 				"position": [ 260, 360 ],
 				"rotation": 90,
-				"scale": 0.5
+				"scale": 3
 			},
 			"components": [
 				{
 					"type": "TextureComponent",
-					"textureName": "Textures/Zelda-Image.png"
+					"textureName": "Textures/EnemyBomber.png"
 				},
 				{
-					"type": "EnginePhysicsComponent",
-					"velocity": [ 100, 0 ],
-					"damping": 0.2
+					"type": "CircleCollisionComponent",
+					"radius": 24
+				}
+			]
+		},
+		{
+			"name": "text",
+			"transform": {
+				"position": [ 360, 200 ],
+				"rotation": 30,
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "TextComponent",
+					"text": "Hello World!",
+					"fontName": "Font/ArcadeClassic.ttf",
+					"fontSize": 36,
+					"color": [ 1, 1, 0, 1 ]
 				}
 			]
 		}
