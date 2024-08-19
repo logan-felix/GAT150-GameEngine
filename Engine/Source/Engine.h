@@ -44,6 +44,9 @@
 #include "Components/TextComponent.h"
 #include "Components/CircleCollisionComponent.h"
 
+// ** physics **
+#include "Physics/Physics.h"
+
 #include <fmod.hpp>
 #include <SDL.h>
 
@@ -63,6 +66,7 @@ public:
 	Audio& GetAudioBG() { return *m_audioBg; }
 	Audio& GetAudioSFX() { return *m_audioSfx; }
 	ParticleSystem& GetPS() { return *m_particleSystem; }
+	Physics& GetPhysics() { return *m_physics; }
 
 	Time& GetTime() { return *m_time; }
 
@@ -79,6 +83,8 @@ private:
 	std::shared_ptr<Audio> m_audioSfx;
 
 	std::unique_ptr<ParticleSystem> m_particleSystem;
+
+	std::unique_ptr<Physics> m_physics;
 };
 
 
