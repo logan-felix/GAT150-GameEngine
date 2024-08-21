@@ -40,6 +40,9 @@
     <Filter Include="Source\Physics">
       <UniqueIdentifier>{57dddad6-5348-4341-a58b-886d36fa4caa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Event">
+      <UniqueIdentifier>{054744f6-3d51-413e-a6ef-d5db55f6de03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine.cpp">
@@ -116,6 +119,9 @@
     </ClCompile>
     <ClCompile Include="Source\Physics\Physics.cpp">
       <Filter>Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Event\EventSystem.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +238,15 @@
     </ClInclude>
     <ClInclude Include="Source\Physics\Physics.h">
       <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Event\Event.h">
+      <Filter>Source\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Event\Observer.h">
+      <Filter>Source\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Event\EventSystem.h">
+      <Filter>Source\Event</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

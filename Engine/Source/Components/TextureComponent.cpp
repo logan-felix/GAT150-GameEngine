@@ -21,7 +21,7 @@ void TextureComponent::Update(float dt)
 void TextureComponent::Draw(Renderer& renderer)
 {
 	Transform transform = owner->transform;
-	renderer.DrawTexture(texture, transform, true);
+	renderer.DrawTexture(texture, transform, false);
 }
 
 void TextureComponent::Read(const json_t& value)

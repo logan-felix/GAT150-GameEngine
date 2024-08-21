@@ -3,7 +3,7 @@
 		{
 			"name": "background",
 			"transform": {
-				"position": [ 0, 0 ],
+				"position": [ 400, 300 ],
 				"rotation": 0,
 				"scale": 2
 			},
@@ -73,6 +73,34 @@
 					"fontName": "Font/ArcadeClassic.ttf",
 					"fontSize": 36,
 					"color": [ 1, 1, 0, 1 ]
+				}
+			]
+		},
+		{
+			"name": "rocket",
+			"prototype": true,
+			"transform": {
+				"position": [ 400, 300 ],
+				"rotation": 0,
+				"scale": 1
+			},
+			"components": [
+				{
+					"type": "TextureComponent",
+					"textureName": "Textures/Bullet.png"
+				},
+				{
+					"type": "EnginePhysicsComponent",
+					"velocity": [ 0, 0 ],
+					"damping": 0.0
+				},
+				{
+					"type": "RocketComponent",
+					"speed": 400
+				},
+				{
+					"type": "CircleCollisionComponent",
+					"radius": 12
 				}
 			]
 		}

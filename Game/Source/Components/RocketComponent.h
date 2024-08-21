@@ -1,10 +1,10 @@
 #pragma once
 #include "Components/Component.h"
 
-class PlayerComponent : public Component
+class RocketComponent : public Component
 {
-	CLASS_DECLARATION(PlayerComponent)
-	CLASS_PROTOTYPE(PlayerComponent)
+	CLASS_DECLARATION(RocketComponent)
+	CLASS_PROTOTYPE(RocketComponent)
 
 	void Initialize() override;
 	void Update(float dt) override;
