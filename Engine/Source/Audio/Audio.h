@@ -19,6 +19,9 @@ public:
 	void StopSound();
 	bool isSoundPlaying();
 
+	friend class AudioClip;
+	friend class AudioSource;
+
 private:
 	FMOD::System* m_audio{ nullptr };
 	FMOD::Channel* m_channel{ nullptr };

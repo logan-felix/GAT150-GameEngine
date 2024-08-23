@@ -22,6 +22,8 @@
 #include "Input/Input.h"
 // audio
 #include "Audio/Audio.h"
+#include "Audio/AudioClip.h"
+#include "Audio/AudioSource.h"
 
 // ** math **
 #include "Math/Vector2.h"
@@ -46,6 +48,7 @@
 #include "Components/EnginePhysicsComponent.h"
 #include "Components/TextComponent.h"
 #include "Components/CircleCollisionComponent.h"
+#include "Components/AudioComponent.h"
 
 // ** physics **
 #include "Physics/Physics.h"
@@ -66,8 +69,7 @@ public:
 
 	Renderer& GetRenderer() { return *m_renderer; }
 	Input& GetInput() { return *m_input; }
-	Audio& GetAudioBG() { return *m_audioBg; }
-	Audio& GetAudioSFX() { return *m_audioSfx; }
+	Audio& GetAudio() { return *m_audio; }
 	ParticleSystem& GetPS() { return *m_particleSystem; }
 	Physics& GetPhysics() { return *m_physics; }
 
@@ -82,8 +84,7 @@ private:
 
 	std::shared_ptr<Renderer> m_renderer;
 	std::shared_ptr<Input> m_input;
-	std::shared_ptr<Audio> m_audioBg;
-	std::shared_ptr<Audio> m_audioSfx;
+	std::shared_ptr<Audio> m_audio;
 
 	std::unique_ptr<ParticleSystem> m_particleSystem;
 

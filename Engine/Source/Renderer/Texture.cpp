@@ -1,5 +1,5 @@
 #include "Texture.h"
-#include "../Core/EAssert.h"
+#include "Core/EAssert.h"
 #include <iostream>
 
 Texture::~Texture()

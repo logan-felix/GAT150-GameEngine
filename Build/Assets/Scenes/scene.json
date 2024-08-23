@@ -101,6 +101,11 @@
 				{
 					"type": "CircleCollisionComponent",
 					"radius": 12
+				},
+				{
+					"type": "AudioComponent",
+					"soundName": "Audio/shoot.mp3",
+					"playOnStart": true
 				}
 			]
 		}
