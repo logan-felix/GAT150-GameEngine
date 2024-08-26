@@ -24,20 +24,20 @@
 			"components": [
 				{
 					"type": "TextureComponent",
-					"textureName": "Textures/PlayerShip.png"
+					"textureName": "Textures/PlayerShip.png",
+					"rotation": 90
 				},
 				{
-					"type": "EnginePhysicsComponent",
-					"velocity": [ 0, 0 ],
-					"damping": 1.0
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.85,
+					"angularDamping": 0.85,
+					"gravityScale": 0,
+					"size": [ 32, 32 ],
+					"friction": 1
 				},
 				{
 					"type": "PlayerComponent",
-					"speed": 200
-				},
-				{
-					"type": "CircleCollisionComponent",
-					"radius":  24
+					"speed": 100
 				}
 			]
 		},
@@ -54,25 +54,10 @@
 					"textureName": "Textures/EnemyBomber.png"
 				},
 				{
-					"type": "CircleCollisionComponent",
-					"radius": 24
-				}
-			]
-		},
-		{
-			"name": "text",
-			"transform": {
-				"position": [ 360, 200 ],
-				"rotation": 30,
-				"scale": 2
-			},
-			"components": [
-				{
-					"type": "TextComponent",
-					"text": "Hello World!",
-					"fontName": "Font/ArcadeClassic.ttf",
-					"fontSize": 36,
-					"color": [ 1, 1, 0, 1 ]
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.0,
+					"gravityScale": 0,
+					"size": [ 32, 32 ]
 				}
 			]
 		},

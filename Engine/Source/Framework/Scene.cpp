@@ -28,6 +28,7 @@ void Scene::Update(float dt)
 	}
 
 	//collision
+	/*
 	for (auto& actor1 : actors)
 	{
 		CollisionComponent* collision1 = actor1->GetComponent<CollisionComponent>();
@@ -48,6 +49,7 @@ void Scene::Update(float dt)
 			}
 		}
 	}
+	*/
 
 	//destroy
 	std::erase_if(actors, [](auto& actor) { return actor->destroyed; });
