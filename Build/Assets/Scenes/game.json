@@ -1,0 +1,44 @@
+{
+	"actors": [
+		{
+			"name": "background",
+			"transform": {
+				"position": [ 400, 300 ],
+				"rotation": 0,
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "TextureComponent",
+					"textureName": "Textures/Purple_Nebula.png"
+				}
+			]
+		},
+		{
+			"name": "player",
+			"transform": {
+				"position": [ 60, 60 ],
+				"rotation": 0,
+				"scale": 1
+			},
+			"components": [
+				{
+					"type": "TextureComponent",
+					"textureName": "Textures/red_box.png",
+					"rotation": 90
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.2,
+					"angularDamping": 0.85,
+					"gravityScale": 1,
+					"contrainAngle": true
+				},
+				{
+					"type": "CharacterComponent",
+					"speed": 5
+				}
+			]
+		}
+	]
+}

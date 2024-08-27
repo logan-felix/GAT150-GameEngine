@@ -141,6 +141,12 @@
     <ClCompile Include="Source\Components\Box2DPhysicsComponent.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Components\TilemapComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\TextureAnimationComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\EAssert.h">
@@ -281,6 +287,15 @@
     <ClInclude Include="Source\Components\Box2DPhysicsComponent.h">
       <Filter>Source\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Math\Rect.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\TilemapComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\TextureAnimationComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Assets\Scenes\scene.json">
@@ -289,5 +304,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+    <None Include="..\Build\Assets\Scenes\tilemap.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Build\Assets\Scenes\game.json">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -30,6 +30,7 @@ public:
 
 	void DrawTexture(std::weak_ptr<class Texture> texture, float x, float y, float angle = 0.0f);
 	void DrawTexture(std::weak_ptr<class Texture> texture, const struct Transform& transform, bool hflip = false);
+	void DrawTexture(std::weak_ptr<class Texture> texture, const struct Transform& transform, const struct Rect& source, bool hflip = false);
 
 private:
 	SDL_Window* m_window{ nullptr };

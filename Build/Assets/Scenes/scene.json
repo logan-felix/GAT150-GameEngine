@@ -93,6 +93,26 @@
 					"playOnStart": true
 				}
 			]
+		},
+		{
+			"name": "coin",
+			"transform": {
+				"position": [ 560, 100 ],
+				"rotation": 0,
+				"scale": 1
+			},
+			"components": [
+				{
+					"type": "TextureAnimationComponent",
+					"textureName": "Textures/coin.png",
+					"fps": 10,
+					"loop": true,
+					"numColumns": 8,
+					"numRows": 1,
+					"startFrame": 1,
+					"endFrame": 8
+				}
+			]
 		}
 	]
 }

@@ -3,11 +3,15 @@
 
 bool SpaceGame::Initialize()
 {
-	rapidjson::Document document;
-	Json::Load("Scenes/scene.json", document);
-
 	m_scene = std::make_unique<Scene>(m_engine);
-	m_scene->Read(document);
+	std::string sceneNames[] = {"Scenes/scene.json"};
+	for (auto sceneName : sceneNames)
+	{
+		rapidjson::Document document;
+		Json::Load(sceneName, document);
+		m_scene->Read(document);
+	}
+
 	m_scene->Initialize();
 
 	ADD_OBSERVER(PlayerDead, SpaceGame::OnPlayerDead);

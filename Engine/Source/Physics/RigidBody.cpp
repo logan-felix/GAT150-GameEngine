@@ -19,7 +19,7 @@ RigidBody::RigidBody(const Transform& transform, const Vector2& size, const def_
 	m_bodyId = b2CreateBody(physics.m_worldId, &bodyDef);
 
 	// set shape
-	b2Vec2 bsize = ConvertVec2(Physics::ScreenToWorld(size));
+	b2Vec2 bsize = ConvertVec2(Physics::ScreenToWorld(size * transform.scale * 0.5f));
 	b2Polygon box = b2MakeBox(bsize.x, bsize.y);
 	b2ShapeDef shapeDef = b2DefaultShapeDef();
 	shapeDef.friction = def.restitution;
