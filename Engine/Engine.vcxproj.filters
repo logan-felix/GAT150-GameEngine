@@ -310,5 +310,11 @@
     <None Include="..\Build\Assets\Scenes\game.json">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\Build\Assets\Scenes\title.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Build\Assets\Scenes\gameover.json">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

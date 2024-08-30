@@ -46,7 +46,8 @@
         },
         {
           "type": "Box2DPhysicsComponent",
-          "isDynamic": false
+          "isDynamic": false,
+          "restitution": 0.0
         }
       ]
     },

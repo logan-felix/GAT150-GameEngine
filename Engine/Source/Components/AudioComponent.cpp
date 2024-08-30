@@ -35,6 +35,10 @@ void AudioComponent::Update(float dt)
         playOnStart = false;
         Play();
     }
+    if (owner->destroyed)
+    {
+        Stop();
+    }
 }
 
 void AudioComponent::Play()

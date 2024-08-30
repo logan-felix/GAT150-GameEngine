@@ -33,7 +33,7 @@ bool Texture::Load(const std::string& filename, Renderer& renderer)
 
 Vector2 Texture::GetSize()
 {
-    ASSERT(m_texture != nullptr);
+    ASSERT(m_texture);
 
     // query the texture for the size
     // https://wiki.libsdl.org/SDL2/SDL_QueryTexture

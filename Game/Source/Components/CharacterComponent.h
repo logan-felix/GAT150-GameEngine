@@ -13,6 +13,9 @@ class CharacterComponent : public Component
 	void OnCollisionExit(Actor* actor);
 
 public:
-	bool onGround = false;
+	int groundCount{ 0 };
 	float speed{ 0 };
+
+	class PhysicsComponent* physics{ nullptr };
+	class TextureAnimationComponent* animation{ nullptr };
 };

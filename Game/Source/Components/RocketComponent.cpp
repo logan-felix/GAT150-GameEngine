@@ -15,9 +15,9 @@ void RocketComponent::Update(float dt)
 
 void RocketComponent::OnCollisionEnter(Actor* actor)
 {
-	if (!actor->destroyed && (actor->name == "enemy"))
+	if (!actor->destroyed && (actor->tag == "enemy"))
 	{
-		//EVENT_NOTIFY(AddPoints, 200)
+		//EVENT_NOTIFY(AddPoints, 100)
 		actor->destroyed = true;
 	}
 }

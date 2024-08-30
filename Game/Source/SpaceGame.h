@@ -18,6 +18,18 @@ public:
 	void OnPlayerDead(const Event& event);
 	void OnAddPoints(const Event& event);
 
+	enum class eState
+	{
+		Title,
+		Game,
+		GameOver
+	};
+
 private:
 	std::unique_ptr<class Scene> m_scene;
+	eState m_state{ eState::Title };
+	float spawnTimer = 0;
+	float stateTimer = 0;
+	int waveNum = 0;
+	int enemySpawnCount = 0;
 };

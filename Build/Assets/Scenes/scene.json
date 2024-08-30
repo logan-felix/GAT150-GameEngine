@@ -2,6 +2,7 @@
 	"actors": [
 		{
 			"name": "background",
+			"persistent": true,
 			"transform": {
 				"position": [ 400, 300 ],
 				"rotation": 0,
@@ -16,36 +17,59 @@
 		},
 		{
 			"name": "player",
+			"tag": "player",
+			"protoype": true,
 			"transform": {
-				"position": [ 60, 60 ],
-				"rotation": 0,
+				"position": [ 400, 500 ],
+				"rotation": 270,
 				"scale": 3
 			},
 			"components": [
 				{
 					"type": "TextureComponent",
 					"textureName": "Textures/PlayerShip.png",
-					"rotation": 90
+					"rotation": 0
 				},
+
 				{
-					"type": "Box2DPhysicsComponent",
-					"damping": 0.85,
-					"angularDamping": 0.85,
+					"type": "EnginePhysicsComponent",
+					"damping": 1,
+					"angularDamping": 0.5,
 					"gravityScale": 0,
-					"size": [ 32, 32 ],
+					"size": [ 16, 16 ],
 					"friction": 1
 				},
 				{
 					"type": "PlayerComponent",
-					"speed": 100
+					"speed": 1000,
+					"lives": 3
+				},
+				{
+					"type": "CircleCollisionComponent",
+					"radius": 24
+				},
+				{
+					"type": "AudioComponent",
+					"soundName": "Audio/stardust.mp3",
+					"playOnStart": true,
+					"loop": true
+				},
+				{
+					"type": "TextComponent",
+					"text": "Score ",
+					"fontName": "Font/ArcadeClassic.ttf",
+					"fontSize": 20,
+					"color": [ 1, 1, 1, 1 ]
 				}
 			]
 		},
 		{
 			"name": "enemy",
+			"tag": "enemy",
+			"prototype": true,
 			"transform": {
 				"position": [ 260, 360 ],
-				"rotation": 90,
+				"rotation": 180,
 				"scale": 3
 			},
 			"components": [
@@ -54,48 +78,71 @@
 					"textureName": "Textures/EnemyBomber.png"
 				},
 				{
-					"type": "Box2DPhysicsComponent",
+					"type": "EnginePhysicsComponent",
 					"damping": 0.0,
 					"gravityScale": 0,
 					"size": [ 32, 32 ]
+				},
+				{
+					"type": "EnemyComponent",
+					"speed": 100
+				},
+				{
+					"type": "CircleCollisionComponent",
+					"radius": 30
 				}
 			]
 		},
 		{
 			"name": "rocket",
+			"tag": "rocket",
 			"prototype": true,
 			"transform": {
 				"position": [ 400, 300 ],
 				"rotation": 0,
-				"scale": 1
+				"scale": 3
 			},
 			"components": [
 				{
-					"type": "TextureComponent",
-					"textureName": "Textures/Bullet.png"
+					"type": "TextureAnimationComponent",
+					"animationName": "bullet",
+					"animations": [
+						{
+							"name": "bullet",
+							"fps": 24,
+							"loop": true,
+							"numColumns": 1,
+							"numRows": 4,
+							"startframe": 1,
+							"endFrame": 4,
+							"textureName": "Textures/Bullet.png"
+						}
+					]
 				},
 				{
 					"type": "EnginePhysicsComponent",
-					"velocity": [ 0, 0 ],
-					"damping": 0.0
+					"damping": 0.0,
+					"size": [ 8, 8 ],
+					"friction": 0
 				},
 				{
 					"type": "RocketComponent",
 					"speed": 400
 				},
 				{
-					"type": "CircleCollisionComponent",
-					"radius": 12
-				},
-				{
 					"type": "AudioComponent",
 					"soundName": "Audio/shoot.mp3",
 					"playOnStart": true
+				},
+				{
+					"type": "CircleCollisionComponent",
+					"radius": 12
 				}
 			]
 		},
 		{
 			"name": "coin",
+			"prototype": true,
 			"transform": {
 				"position": [ 560, 100 ],
 				"rotation": 0,
@@ -104,13 +151,19 @@
 			"components": [
 				{
 					"type": "TextureAnimationComponent",
-					"textureName": "Textures/coin.png",
-					"fps": 10,
-					"loop": true,
-					"numColumns": 8,
-					"numRows": 1,
-					"startFrame": 1,
-					"endFrame": 8
+					"animationName": "coin",
+					"animations": [
+						{
+							"name": "idle",
+							"fps": 10,
+							"loop": true,
+							"numColumns": 8,
+							"numRows": 1,
+							"startframe": 1,
+							"endFrame": 8,
+							"textureName": "Textures/coin.png"
+						}
+					]
 				}
 			]
 		}

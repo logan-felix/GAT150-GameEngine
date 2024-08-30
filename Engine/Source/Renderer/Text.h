@@ -17,7 +17,7 @@ public:
 	void SetFont(res_t<Font> font) { m_font = font; }
 	res_t<Texture> GetTexture() { return m_texture; }
 
-private:
 	res_t<Font> m_font{ nullptr };
 	res_t<Texture> m_texture{ nullptr };
+private:
 };

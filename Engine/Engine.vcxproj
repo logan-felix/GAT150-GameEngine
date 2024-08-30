@@ -110,7 +110,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Build\Assets\Scenes\game.json" />
+    <None Include="..\Build\Assets\Scenes\gameover.json" />
     <None Include="..\Build\Assets\Scenes\tilemap.json" />
+    <None Include="..\Build\Assets\Scenes\title.json" />
     <None Include="cpp.hint" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

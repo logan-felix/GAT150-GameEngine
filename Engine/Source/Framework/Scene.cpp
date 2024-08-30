@@ -28,7 +28,7 @@ void Scene::Update(float dt)
 	}
 
 	//collision
-	/*
+	
 	for (auto& actor1 : actors)
 	{
 		CollisionComponent* collision1 = actor1->GetComponent<CollisionComponent>();
@@ -49,7 +49,7 @@ void Scene::Update(float dt)
 			}
 		}
 	}
-	*/
+	
 
 	//destroy
 	std::erase_if(actors, [](auto& actor) { return actor->destroyed; });
@@ -71,9 +71,9 @@ void Scene::AddActor(std::unique_ptr<Actor> actor, bool initialize)
 	actors.push_back(std::move(actor));
 }
 
-void Scene::RemoveAll()
+void Scene::RemoveAll(bool force)
 {
-	actors.clear();
+	std::erase_if(actors, [force](auto& actor) { return (force || !actor->persistent); });
 }
 
 void Scene::Read(const json_t& value)

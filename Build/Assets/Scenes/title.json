@@ -1,0 +1,53 @@
+{
+	"actors": [
+		{
+			"name": "background",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 300 ],
+				"rotation": 0,
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "TextureComponent",
+					"textureName": "Textures/Purple_Nebula.png"
+				}
+			]
+		},
+		{
+			"name": "title",
+			"transform": {
+				"position": [ 400, 300 ],
+				"rotation": 0,
+				"scale": 1
+			},
+			"components": [
+				{
+					"type": "TextComponent",
+					"text": "Space  Shooter",
+					"fontName": "Font/ArcadeClassic.ttf",
+					"fontSize": 100,
+					"color": [ 1, 0, 1, 1 ]
+				}
+			]
+		},
+		{
+			"name": "continue",
+			"transform": {
+				"position": [ 400, 400 ],
+				"rotation": 0,
+				"scale": 0.5
+			},
+			"components": [
+				{
+					"type": "TextComponent",
+					"text": "Press  Space  to  Continue",
+					"fontName": "Font/ArcadeClassic.ttf",
+					"fontSize": 30,
+					"color": [ 1, 1, 1, 1 ]
+				}
+			]
+		}
+	]
+}

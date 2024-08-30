@@ -4,6 +4,7 @@
 #include "Core/ETime.h"
 #include "Core/EAssert.h"
 #include "Core/EFile.h"
+#include "Core/EString.h"
 #include "Core/Json.h"
 #include "Core/Singleton.h"
 #include "Core/Factory.h"
@@ -18,8 +19,10 @@
 #include "Renderer/Model.h"
 #include "Renderer/Color.h"
 #include "Renderer/Texture.h"
+
 // input
 #include "Input/Input.h"
+
 // audio
 #include "Audio/Audio.h"
 #include "Audio/AudioClip.h"
@@ -46,6 +49,7 @@
 
 // ** components **
 #include "Components/TextureComponent.h"
+#include "Components/TextureAnimationComponent.h"
 #include "Components/EnginePhysicsComponent.h"
 #include "Components/TextComponent.h"
 #include "Components/CircleCollisionComponent.h"
